@@ -15,9 +15,7 @@ const config = {
       base: '/toolkit'
     },
     alias: {
-      '$components': 'src/lib/components',
       '$modules': 'src/lib/modules',
-      '$utils': 'src/lib/utils',
     }
   }
 };
