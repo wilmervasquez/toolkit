@@ -2,7 +2,7 @@
 <html lang="en">
   <head class="dark">
     <meta charset="utf-8" />
-    <link rel="icon" href="/toolkit/favicon.ico" />
+    <link rel="icon" href="./favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Font:Gesit -->
@@ -13,33 +13,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
     
-		<link rel="modulepreload" href="/toolkit/_app/immutable/entry/start.B3kK6CHI.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/Dp7ryXJB.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/BwA_UtI1.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/BYYuV4yF.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/B_Ed6ie9.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/BlFCoeTX.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/entry/app.DCFjIMT2.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/NZTpNUN0.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/CYsl4Lh2.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/DJiop9lt.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/CaFN8IWf.js">
-		<link rel="modulepreload" href="/toolkit/_app/immutable/chunks/BWxHbNTq.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.B3kK6CHI.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/Dp7ryXJB.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BwA_UtI1.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BYYuV4yF.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/B_Ed6ie9.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BlFCoeTX.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.DCFjIMT2.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/NZTpNUN0.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/CYsl4Lh2.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/DJiop9lt.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/CaFN8IWf.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BWxHbNTq.js">
   </head>
   <body data-sveltekit-preload-data="hover" class="scrollbar-y">
     <div style="display: contents">
 			<script>
 				{
 					__sveltekit_1y5wrtm = {
-						base: "/toolkit",
+						base: new URL(".", location).pathname.slice(0, -1),
 						assets: "/toolkit"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("/toolkit/_app/immutable/entry/start.B3kK6CHI.js"),
-						import("/toolkit/_app/immutable/entry/app.DCFjIMT2.js")
+						import("./_app/immutable/entry/start.B3kK6CHI.js"),
+						import("./_app/immutable/entry/app.DCFjIMT2.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element);
 					});
