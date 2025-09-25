@@ -6,9 +6,6 @@
   "editor.tabSize": 2,
   "files.exclude": {
     ".svelte-kit": true,
-    ".temp": true,
-    "dist": true,
-    // "generated": true,
     "node_modules": true
   },
   "files.insertFinalNewline": true,
