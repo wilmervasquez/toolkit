@@ -1,0 +1,1 @@
+import{y as t,w as e}from"./DPMHFr4j.js";class a{id=crypto.randomUUID();email="2023210234@udh.edu.pe";name="Juan Carlos";lastName="Patrinius Suarez";avatarUrl="	https://mockmind-api.uifaces.co/content/human/92.jpg";auth=!0;constructor(){}}function o(){return t("m",new a)}function s(){return e("m")}export{s as g,o as s};
