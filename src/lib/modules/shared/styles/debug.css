@@ -1,0 +1,28 @@
+[data-debug-outline], [data-debug-outline] * {
+  @apply outline outline-violet-500 bg-violet-500/5;
+}
+
+[data-debug-bg-pattern] {
+  background-image: repeating-linear-gradient(
+    315deg,
+    var(--color-pattern-fg) 0,
+    var(--color-pattern-fg) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
+  @apply outline outline-zinc-800;
+}
+
+[data-debug-entry], [data-debug-entry] * {
+  animation: entry 1200ms !important;
+}
+
+@keyframes entry {
+  0%, 100% {
+    outline: 1px solid transparent;
+  }
+  40% {
+    outline: 1px solid var(--color-violet-500);
+  }
+}

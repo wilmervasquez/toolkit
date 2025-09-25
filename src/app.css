@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+@import '$lib/modules/shared/styles/debug.css';
+@import '$lib/modules/shared/styles/theme.css';
+@import '$lib/modules/shared/styles/scrollbar.css';
+@import '$lib/modules/shared/styles/view-transition.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: Geist, 'Inter', sans-serif;
+  --font-mono: JetBrains Mono;
+  --font-fuzzy: 'Fuzzy Bubbles', sans-serif;
+  --font-dela: 'Dela Gothic One', cursive;
+}
+
+@layer base {
+  html {
+    @apply font-sans;
+  }
+
+  * {
+    --color-range: 220;
+    animation: 2s fad;
+    background-color: transparent;
+    outline: none;
+    border-style: solid;
+  }
+
+  body {
+    @apply bg-background
+  }
+
+  /* delete select background */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-background-clip: text;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
+  }
+
+  .tabler-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

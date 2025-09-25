@@ -1,0 +1,112 @@
+@theme {
+  --color-primary: oklch(58.254% 0.29896 307.316);
+  --color-primary-600: oklch(59.999% 0.29794 310.281);
+  --color-secondary: hsl(0 0% 96.1%);
+  --color-background: #F3F3F3;
+
+  /* status */
+  --color-success: hsl(115 57% 51%);
+  --color-danger: hsl(355 100% 64%);
+  --color-warning: hsl(44 100% 50%);
+
+  --color-muted: hsl(0 0% 96.1%);
+  --color-card: hsl(0 0% 100%);
+  --color-popover: hsl(0 0% 100%);
+  --color-border: hsl(0 0% 89.8%);
+  --color-input: hsl(0 0% 89.8%);
+  --color-accent: hsl(0 0% 96.1%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-ring: hsl(0 0% 3.9%);
+
+  /* charts */
+  --color-chart-1: oklch(52% 0.19 262);
+  --color-chart-2: oklch(69% 0.13 165);
+  --color-chart-3: oklch(72% 0.15 60);
+  --color-chart-4: oklch(61% 0.20 312);
+  --color-chart-5: oklch(61% 0.20 6);
+  --color-primary-foreground: #AB00FF;
+  --color-secondary-foreground: hsl(0 0% 9%);
+  --color-foreground: hsl(0 0% 3.9%);
+  --color-success-foreground: hsl(115 57% 51%);
+  --color-danger-foreground: hsl(355 100% 64%);
+  --color-warning-foreground: hsl(44 100% 50%);
+  --color-muted-foreground: hsl(0 0% 45.1%);
+  --color-card-foreground: hsl(0 0% 3.9%);
+  --color-popover-foreground: hsl(0 0% 3.9%);
+  --color-border-foreground: hsl(44 100% 50%);
+  --color-input-foreground: hsl(44 100% 50%);
+  --color-accent-foreground: hsl(0 0% 9%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-ring-foreground: hsl(44 100% 50%);
+
+  /* scrollbar */
+  --color-scrollbar-track: hsl(0 0% 0% 0);
+  --color-scrollbar-thumb: hsl(0 0% 80%);
+  --color-scrollbar-thumb-hover: hsl(0 0% 70%);
+
+  /* planing */
+  --color-brand: oklch(0.5601 0.2494 285.54);
+  --color-darkest: oklch(0.1813 0.0227 260.41);
+  --color-dark: oklch(0.2795 0.0368 260.03);
+  --color-mid: oklch(0.8013 0.0126 247.98);
+  --color-light: oklch(0.8971 0.0151 251.17);
+  --color-lightest: oklch(1 0 0);
+
+  /* Others */
+  --color-pattern-fg: var(--color-zinc-800);
+}
+
+.dark:root {
+  color-scheme: light dark;
+  --color-primary: var(--color-purple-500);
+  --color-secondary: hsl(0, 0%, 14.9%);
+  --color-background: var(--color-neutral-950);
+  --color-success: hsl(115, 57%, 51%);
+  --color-danger: hsl(355, 100%, 64%);
+  --color-warning: hsl(44, 100%, 50%);
+  --color-muted: hsl(44, 100%, 50%);
+  --color-card: hsl(0, 0%, 3.9%);
+  --color-popover: hsl(0 0% 3.9%);
+  --color-border: hsl(0 0% 14.9%);
+  --color-input: hsl(0 0% 14.9%);
+  --color-accent: hsl(0 0% 14.9%);
+  --color-destructive: hsl(0 62.8% 30.6%);
+  --color-ring: hsl(0 0% 83.1%);
+
+  /* charts */
+  --color-chart-1: oklch(52% 0.19 262);
+  --color-chart-2: oklch(69% 0.13 165);
+  --color-chart-3: oklch(72% 0.15 60);
+  --color-chart-4: oklch(61% 0.20 312);
+  --color-chart-5: oklch(61% 0.20 6);
+  --color-primary-foreground: #c435ff;
+  --color-secondary-foreground: hsl(12 34% 70%);
+  --color-foreground: hsl(0 0% 98%);
+  --color-success-foreground: hsl(115 57% 51%);
+  --color-danger-foreground: hsl(355 100% 64%);
+  --color-warning-foreground: hsl(44 100% 50%);
+  --color-muted-foreground: hsl(0 0% 63.9%);
+  --color-card-foreground: hsl(0 0% 98%);
+  --color-popover-foreground: hsl(0 0% 98%);
+  --color-border-foreground: hsl(44 100% 50%);
+  --color-input-foreground: hsl(44 100% 50%);
+  --color-accent-foreground: hsl(0 0% 98%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-ring-foreground: hsl(44 100% 50%);
+
+  /* scrollbar */
+  --color-scrollbar-track: hsl(0 0% 0% 0);
+  --color-scrollbar-thumb: hsl(0 0% 20%);
+  --color-scrollbar-thumb-hover: hsl(0 0% 30%);
+
+  /* planing */
+  --color-brand: oklch(56.013% 0.24953 285.543);
+  --color-darkest: oklch(0.1813 0.0227 260.41);
+  --color-dark: oklch(0.2795 0.0368 260.03);
+  --color-mid: oklch(0.8013 0.0126 247.98);
+  --color-light: oklch(0.8971 0.0151 251.17);
+  --color-lightest: oklch(1 0 0);
+
+  /* Others */
+  --color-pattern-fg: var(--color-zinc-800);
+}

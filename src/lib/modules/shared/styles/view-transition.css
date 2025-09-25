@@ -1,0 +1,12 @@
+/* @view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 1s;
+} */
+
+/* &[aria-current='page']::before {
+  view-transition-name: active-page;
+} */
