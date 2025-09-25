@@ -1,0 +1,21 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "files.exclude": {
+    ".svelte-kit": true,
+    ".temp": true,
+    "dist": true,
+    // "generated": true,
+    "node_modules": true
+  },
+  "files.insertFinalNewline": true,
+  "files.readonlyInclude": {
+    "**/icons/**": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "svelte.plugin.svelte.format.config.svelteIndentScriptAndStyle": false
+}

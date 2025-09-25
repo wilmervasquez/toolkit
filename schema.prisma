@@ -1,0 +1,328 @@
+model Appointment {
+  id           String    @id @default(uuid())
+  date         DateTime
+  status       AppointmentStatus @default(PENDING)
+  notes        String?
+  doctorId     String
+  patientId    String
+  slotId       String @unique
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
+  patient      User      @relation("PatientAppointments", fields: [patientId], references: [id])
+  slot         Slot      @relation(fields: [slotId], references: [id])
+  invoice      Invoice?
+}
+
+model Doctor {
+  id            String    @id
+  specialty     String
+  licenseNumber String    @unique
+  bio           String?
+  clinicName    String?
+  address       String?
+
+  user          User      @relation("DoctorProfile", fields: [id], references: [id])
+
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+
+  appointments   Appointment[]
+  availableSlots Slot[]
+}
+
+model Invoice {
+  id            String     @id @default(uuid())
+  amount        Float
+  status        InvoiceStatus @default(PENDING)
+  appointmentId String     @unique
+  createdAt     DateTime   @default(now())
+  userId        String
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
+}
+
+model MedicalRecord {
+  id         String   @id @default(uuid())
+  patientId  String
+  date       DateTime @default(now())
+  description String
+  prescription String?
+  patient    Patient  @relation(fields: [patientId], references: [id])
+}
+
+model Organization {
+  id          String   @id @default(uuid())
+  name        String
+  ruc         String   @unique
+  address     String?
+  ownerId     String   @unique
+  owner       User     @relation("OrganizationUser", fields: [ownerId], references: [id])
+  doctors     Doctor[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Patient {
+  id         String   @id
+  birthDate  DateTime
+  gender     Gender
+  user       User     @relation("PatientProfile", fields: [id], references: [id])
+  records    MedicalRecord[]
+}
+
+model Project {
+  id          String   @id
+  name        String
+  description String?
+  status      String
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users User[]
+}
+
+model Slot {
+  id        String     @id @default(uuid())
+  startTime DateTime
+  endTime   DateTime
+  doctorId  String
+  doctor    Doctor     @relation(fields: [doctorId], references: [id])
+  isBooked  Boolean    @default(false)
+  appointment Appointment?
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String?  @db.VarChar(50)
+  lastName     String?  @db.VarChar(50)
+  username     String   @unique @db.VarChar(50)
+  email        String   @unique
+  passwordHash String?
+  phone        String?  @db.VarChar(50)
+  age          Int?
+  gender       Gender?
+  avatarUrl    String?
+  provider     String   @default("email")
+  providerId   String?
+  passwordResetToken PasswordResetToken?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
+
+  orders             Order[]
+  products           Product[]
+  sessions           Session[]
+  attendances        Attendance[]
+  roles              UserRole[]
+  visits             Visit[]
+
+  doctorProfile  Doctor?    @relation("DoctorProfile")
+  patientProfile Patient?   @relation("PatientProfile")
+  organization   Organization? @relation("OrganizationUser")
+
+  projects       Project[]
+  patientAppointments Appointment[] @relation("PatientAppointments")
+  invoices       Invoice[]
+  sentMessages     Message[] @relation("SenderMessages")
+  receivedMessages Message[] @relation("ReceiverMessages")
+}
+
+model Role {
+  id    Int        @id @default(autoincrement())
+  name  String     @unique
+  users UserRole[]
+}
+
+model UserRole {
+  userId String
+  roleId Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+}
+
+model PasswordResetToken {
+  userId    String   @id
+  tokenHash String
+  expiresAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Attendance {
+  id       String    @id @default(uuid())
+  userId   String
+  checkIn  DateTime  @default(now())
+  checkOut DateTime?
+  status   String    @default("Present") // "Present", "Absent", "Late", etc.
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Bookmark {
+  id           Int      @id
+  guid         String   @unique
+  name         String
+  url          String?
+  dateAdded    DateTime
+  dateLastUsed DateTime
+  folderId     Int
+
+  folder BookmarkFolder? @relation(fields: [folderId], references: [id])
+}
+
+model BookmarkFolder {
+  id           Int      @id
+  guid         String   @unique
+  name         String
+  dateAdded    DateTime
+  dateLastUsed DateTime
+  dateModified DateTime
+
+  bookmarks Bookmark[]
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  senderId   String
+  receiverId String
+  content    String
+  timestamp  DateTime @default(now())
+
+  sender   User @relation("SenderMessages", fields: [senderId], references: [id])
+  receiver User @relation("ReceiverMessages", fields: [receiverId], references: [id])
+}
+
+model Order {
+  id              Int      @id @default(autoincrement())
+  userId          String
+  orderDate       DateTime
+  status          String   @db.VarChar(20)
+  totalAmount     Decimal  @db.Decimal(10, 2)
+  shippingAddress String   @db.VarChar(255)
+  paymentStatus   String   @db.VarChar(20)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id])
+
+  payments Payment[]
+}
+
+model Payment {
+  id            Int      @id @default(autoincrement())
+  orderId       Int
+  method        String   @db.VarChar(50)
+  date          DateTime @default(now())
+  amount        Decimal  @db.Decimal(10, 2)
+  transactionId String   @db.VarChar(50)
+  status        String   @db.VarChar(50)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+
+  order Order @relation(fields: [orderId], references: [id])
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       Int      @default(0)
+  userId      String
+  categoryId  Int
+  stock       Int      @default(0)
+  sku         String?  @unique
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+
+  category ProductCategory @relation(fields: [categoryId], references: [id])
+  user     User            @relation(fields: [userId], references: [id])
+}
+
+model ProductCategory {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  products Product[]
+}
+
+model Course {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  cycle Int
+  color String @default("#888888")
+
+  schedules Schedule[]
+}
+
+model Schedule {
+  id        Int     @id @default(autoincrement())
+  day       String
+  timeStart String
+  timeEnd   String
+  section   String
+  courseId  Int
+  location  String?
+
+  course Course @relation(fields: [courseId], references: [id])
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELED
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  userAgent    String
+  ipAddress    String
+  expiresAt    DateTime
+  lastActiveAt DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
+
+  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+}
+
+model Visit {
+  id        Int      @id @default(autoincrement())
+  ipAddress String
+  method    String
+  status    Int
+  time      Decimal  @db.Decimal(6, 2)
+  url       String
+  userAgent String
+  visitedAt DateTime @default(now())
+
+  userId String?
+  user   User? @relation(fields: [userId], references: [id])
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "esm"
+}
