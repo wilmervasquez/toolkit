@@ -1,5 +1,4 @@
 {
-  "git.enabled": false,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always"
   },
