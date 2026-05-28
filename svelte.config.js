@@ -9,14 +9,15 @@ const config = {
   },
   kit: {
     adapter: adapter({
+      pages: 'build',
+      assets: 'build',
 			fallback: 'index.html',
+			strict: true
     }),
-    paths: {
-      base: '/toolkit'
-    },
     alias: {
       '$modules': 'src/lib/modules',
-    }
+    },
+    paths: { base: '/toolkit'},
   }
 };
 

@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { IconsProps } from '@tabler/icons-svelte/icons/icons';
-  import type { SvelteComponent } from 'svelte';
-
+  import { asset, resolve } from '$app/paths';
   import { ButtonLink } from '$modules/shared/components/button';
   import { setColorSchemeContext } from '$modules/shared/contexts/color-scheme';
   import { getUserContext } from '$modules/users/contexts/user.svelte';
-  import { IconBrandDiscordFilled, IconBrandFacebookFilled, IconBrandInstagramFilled, IconBrandTelegram, IconBrandTiktokFilled, IconBrandYoutubeFilled, IconCashBanknote, IconChevronCompactRight, IconChevronDown, IconCornerDownLeft, IconDropletStar, IconFile, IconLayoutBoard, IconLink, IconLocationFilled, IconMoon, IconPill } from "@tabler/icons-svelte";
+  import { IconBrandDiscordFilled, IconBrandFacebookFilled, IconBrandInstagramFilled, IconBrandTelegram, IconBrandTiktokFilled, IconBrandYoutubeFilled, IconCashBanknote, IconChevronCompactRight, IconChevronDown, IconCornerDownLeft, IconDropletStar, IconFile, IconLayoutBoard, IconLink, IconLocationFilled, IconMoon, IconPill, IconTable, IconTriangle } from "@tabler/icons-svelte";
+  import type { IconsProps } from '@tabler/icons-svelte/icons/icons';
+  import type { SvelteComponent } from 'svelte';
 
   let { children } = $props();
 
@@ -14,28 +14,28 @@
   let scrolled = $state(false)
 
   const onscroll = () => {
-    scrolled = window.scrollY > 50
+    scrolled = window.scrollY > 30
   }
 </script>
 <svelte:window {onscroll}/>
 <svelte:head>
   <title>ToolKit</title>
 </svelte:head>
-{#snippet men(Icon: typeof SvelteComponent<IconsProps>, label: string, description: string)}
-  <div class="flex items-center gap-3 hover:bg-zinc-800 p-2 rounded-lg">
+{#snippet men(Icon: typeof SvelteComponent<IconsProps>, label: string, description: string, href: string)}
+  <a href="/toolkit{href}" class="flex items-center gap-3 hover:bg-zinc-800 p-2 rounded-lg">
     <div class="">
       <div class="flex items-center gap-2 text-purple-500"><Icon/>{ label }</div>
       <p class="text-zinc-300 text-sm pl-7">{ description }</p>
     </div>
     <IconChevronCompactRight class="text-zinc-500"/>
-  </div>
+  </a>
 {/snippet}
 <header class="max-w-6xl m-auto sticky top-0 rounded-full" class:scrolled>
   <nav class="p-4">
     <ul class="flex gap-3 items-center justify-between">
       <h1>
         <a href="/" class="flex gap-3 items-center text-purple-500 text-2xl font-bold">
-          <img src="/favicon.svg" alt="" class="size-8" />
+          <img src={asset('/favicon.svg')} alt="" class="size-8" />
           ToolKit
         </a>
       </h1>
@@ -44,26 +44,23 @@
           Home
           <IconChevronDown class="size-4"/>
           <div class="mens -translate-y-1 invisible opacity-0 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 absolute border border-zinc-700 z-99 bg-zinc-800/70 backdrop-blur-2xl top-13 p-1 inset-shadow-sm rounded-xl shadow-black/50 shadow-sm">
-            {@render men(IconPill, 'Dermatologia', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconDropletStar, 'Odontologia', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconLayoutBoard, 'Admision', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconCashBanknote, 'Capacidades', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconPill, 'Sorpresa', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconFile, 'Limitaciones', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconPill, 'Footer', 'Empeñanodos en crear una piel resueña')}
+            {@render men(IconPill, 'Dermatologia', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconDropletStar, 'Odontologia', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconLayoutBoard, 'Admision', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconCashBanknote, 'Capacidades', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconPill, 'Sorpresa', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconFile, 'Limitaciones', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconPill, 'Footer', 'Empeñanodos en crear una piel resueña','')}
           </div>
         </a>
         <a href="/" class="flex items-center gap-2 group hover:bg-purple-500/10 hover:text-purple-400 px-3 py-1 rounded-lg">
-          Explore
+          Tools
           <IconChevronDown class="size-4"/>
-          <div class="mens -translate-y-1 invisible opacity-0 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 absolute border border-purple-900 z-99 bg-zinc-900 top-13 p-1 inset-shadow-sm rounded-xl inset-shadow-zinc-800 shadow-black shadow-sm">
-            {@render men(IconPill, 'Dermatologia', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconDropletStar, 'Odontologia', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconLayoutBoard, 'Admision', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconCashBanknote, 'Capacidades', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconPill, 'Sorpresa', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconFile, 'Limitaciones', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconPill, 'Cardiobasculars INterior', 'Empeñanodos en crear una piel resueña')}
+          <div class="mens -translate-y-1 invisible opacity-0 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 absolute border border-zinc-700 z-99 bg-zinc-800/70 backdrop-blur-2xl top-13 p-1 inset-shadow-sm rounded-xl shadow-black/50 shadow-sm">
+            {@render men(IconPill, 'Statistics', 'Empeñanodos en crear una piel resueña','/statistics')}
+            {@render men(IconDropletStar, 'Translate', 'Empeñanodos en crear una piel resueña','/translate')}
+            {@render men(IconTriangle, 'Geo', 'Empeñanodos en crear una piel resueña','/geo')}
+            {@render men(IconTable, 'Tables', 'Insersecion de datos','/tables')}
           </div>
         </a>
         <a href="/"  class="flex items-center gap-2 hover:bg-purple-500/10 hover:text-purple-400 px-3 py-1 rounded-lg">Services</a>
@@ -71,13 +68,13 @@
         <a href="/test"  class="flex items-center gap-2 hover:bg-purple-500/10 hover:text-purple-400 px-3 py-1 rounded-lg group">
           Blog<IconChevronDown class="size-4"/>
           <div class="mens -translate-y-1 invisible opacity-0 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 absolute border border-purple-900 z-99 bg-zinc-900 top-13 p-1 inset-shadow-sm rounded-xl inset-shadow-zinc-800 shadow-black shadow-sm">
-            {@render men(IconPill, 'Redes sociales', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconDropletStar, 'Implantes', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconLayoutBoard, 'Letreras', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconCashBanknote, 'Manecillas', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconPill, 'Sorpresa', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconFile, 'Limitaciones', 'Empeñanodos en crear una piel resueña')}
-            {@render men(IconPill, 'Cardiobasculars INterior', 'Empeñanodos en crear una piel resueña')}
+            {@render men(IconPill, 'Redes sociales', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconDropletStar, 'Implantes', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconLayoutBoard, 'Letreras', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconCashBanknote, 'Manecillas', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconPill, 'Sorpresa', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconFile, 'Limitaciones', 'Empeñanodos en crear una piel resueña','')}
+            {@render men(IconPill, 'Cardiobasculars INterior', 'Empeñanodos en crear una piel resueña','')}
           </div>
         </a>
         <a href="/workspace"  class="flex items-center gap-2 hover:bg-purple-500/10 hover:text-purple-400 px-3 py-1 rounded-lg">Contact</a>
@@ -89,7 +86,7 @@
               <IconMoon/>
             {/if}
           </button>
-          <ButtonLink href="/statistics" radius="full">
+          <ButtonLink href={resolve('/statistics')} radius="full">
             Go starts
             <IconCornerDownLeft class="size-4"/>
           </ButtonLink>

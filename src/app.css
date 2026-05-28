@@ -11,6 +11,7 @@
   --font-mono: JetBrains Mono;
   --font-fuzzy: 'Fuzzy Bubbles', sans-serif;
   --font-dela: 'Dela Gothic One', cursive;
+  --font-times: Times;
 }
 
 @layer base {

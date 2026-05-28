@@ -4,16 +4,17 @@
   import { getSelectContext } from "./Select.svelte";
 
   interface Props {
+    position?: 'right' | 'left'
     class?: ClassValue
     children: Snippet
   }
 
-  let { children, ...props }: Props = $props();
+  let { position = 'right', children, ...props }: Props = $props();
 
   let select = getSelectContext();
   console.log(select);
 </script>
-<div class={[select.opened ? 'fade' : 'fade-out', 'select-content absolute flex flex-col border border-zinc-800 shadow-sm bg-zinc-900 shadow-black rounded-lg p-1', props.class]}>
+<div class={[select.opened ? 'fade' : 'fade-out', position == 'right' ? 'left-0':'right-0','select-content absolute flex flex-col border border-zinc-800 shadow-sm bg-zinc-900 shadow-black rounded-lg p-1', props.class]}>
   {@render children()}
 </div>
 <style>
